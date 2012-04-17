@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["kcrayon"]
   s.email       = ["kcrayon@users.noreply.github.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{A Resque plugin that prevents the worker from forking.}
+  s.description = %q{Instead of forking and doing a job in a child process, do the job in the worker process and exit after a fixed number of jobs.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
