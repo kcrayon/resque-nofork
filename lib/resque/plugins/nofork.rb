@@ -15,7 +15,7 @@ module Resque::Plugins
 
     def self.included(base)
       base.instance_eval do
-        alias_method :work_wihout_nofork, :work
+        alias_method :work_without_nofork, :work
         alias_method :work, :work_with_nofork
 
         alias_method :shutdown_without_nofork, :shutdown?
