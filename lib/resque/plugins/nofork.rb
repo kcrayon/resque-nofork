@@ -1,16 +1,26 @@
-require 'resque/worker'
+require "resque/worker"
+require "get_process_mem"
 
 module Resque::Plugins
   module Nofork
-    VERSION = "0.0.1"
+    VERSION = "0.0.2"
 
     def work_with_nofork(*args)
       @cant_fork = true
       work_without_nofork(*args)
     end
 
+    def nofork_max_jobs
+      processed >= [ENV["JOBS_PER_WORKER"].to_i, 1].max
+    end
+
+    def nofork_max_memory
+      return if ENV["MEM_PER_WORKER"].nil?
+      GetProcessMem.new.mb >= ENV["MEM_PER_WORKER"].to_i
+    end
+
     def shutdown_with_nofork
-      shutdown_without_nofork || processed >= [ENV['JOBS_PER_WORKER'].to_i,1].max
+      shutdown_without_nofork || nofork_max_jobs || nofork_max_memory
     end
 
     def self.included(base)

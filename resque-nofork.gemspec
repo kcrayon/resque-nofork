@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "resque-nofork"
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.authors     = ["kcrayon"]
   s.email       = ["kcrayon@users.noreply.github.com"]
   s.homepage    = ""
@@ -16,4 +16,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "resque"
+  s.add_dependency "get_process_mem", "~> 0"
 end
